@@ -1,0 +1,7 @@
+target remote :1234
+b 11
+c
+set number=10
+call result=fibonacci(number)
+j 12
+q
