@@ -9,21 +9,22 @@
 	.type fibonacci, function
 
 fibonacci:
-	@ ADD/MODIFY CODE BELOW
-	@ PROLOG
 	push {r3, r4, r5, lr}
 
-	mov r5, r0			@ record the number of sequence 
-	mov r0, #0			@ initial basic value is zero
-	mov r3, #1			@ initial second value is one
-	mov r4, #1			@ initial count numver is one
-.L1:
-	add r0, r0, r3			@ r0 = r0 + r3
-	mov r3, r0			@ r3 = r0
-	add r4, r4, #1			@ r4 = r4 + 1 count++
-	cmp r4, r5			@ Compare r4 with r5
-	blt .L1				@ If r4 < r5 goto .L1
+	subs r5, r0, #1
+	ble .L2			
 
+	movs r0, #0
+	movs r3, #0			
+	movs r4, #1			
+.L1:
+	add r0, r3, r4			@ r0 = r3 + r3
+	mov r3, r4			@ r3 = r4
+	mov r4, r0			@ r4 = r0
+	subs r5, r5, #1			@ r5 = r5 - 1
+	bgt .L1				@ If r5 > 0 goto .L1
+
+.L2:
 	pop {r3, r4, r5, pc}		@EPILOG
 
 	@ END CODE MODIFICATION
